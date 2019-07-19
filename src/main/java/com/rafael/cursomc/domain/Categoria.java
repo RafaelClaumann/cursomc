@@ -1,5 +1,7 @@
 package com.rafael.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,8 +18,9 @@ public class Categoria implements Serializable {
     private Integer id;
     private String nome;
 
-    // categorias é o atributo em Produto onde foi feito o mapeamento da relação.
-    @ManyToMany(mappedBy = "categorias")
+
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "categorias")  // categorias é o atributo em Produto onde foi feito o mapeamento da relação.
     private List<Produto> produtos = new ArrayList<>();
 
     public Categoria() {
