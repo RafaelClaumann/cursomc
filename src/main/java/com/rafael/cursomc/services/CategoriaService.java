@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CategoriaService {
 
 
-    // A dependencia é automaticamente instanciada pelo Spring, pelo mecanismo de Injeção de Dependencia.
+    // A dependencia é automaticamente instanciada pelo Spring, mecanismo de Injeção de Dependencia.
     @Autowired
     private CategoriaRepository categoriaRepository;
 

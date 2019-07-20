@@ -19,7 +19,7 @@ public class Categoria implements Serializable {
     private String nome;
 
 
-    @JsonManagedReference
+    @JsonManagedReference  // deve ser declarada na classe em que você quer que os objetos associados apareçam.
     @ManyToMany(mappedBy = "categorias")  // categorias é o atributo em Produto onde foi feito o mapeamento da relação.
     private List<Produto> produtos = new ArrayList<>();
 

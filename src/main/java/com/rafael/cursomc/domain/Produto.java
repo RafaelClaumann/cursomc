@@ -23,6 +23,10 @@ public class Produto implements Serializable {
      * PRODUTO_CATEGORIA(produto_id, categoria_id)
      *   produto_id REFERENCES Produto(id)
      *   categoria_id REFERENCES Categoria(id)
+     *
+     * @JsonBackReference = O outro lado da associaçao já buscou os objetos então agora não devo buscar e
+     * omito a lista de categorias para cada produto (Elimina a recursão entre Produto-Categoria).
+     *
      * */
     @JsonBackReference
     @ManyToMany
