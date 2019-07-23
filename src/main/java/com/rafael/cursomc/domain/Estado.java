@@ -1,5 +1,7 @@
 package com.rafael.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ public class Estado implements Serializable {
     private Integer id;
     private String nome;
 
-    @OneToMany(mappedBy = "estado")  // atributo em Cidade.java que mapeou em @ManyToOne
+    @JsonBackReference
+    @OneToMany(mappedBy = "estado")  // atributo estado em Cidade.java é usado para mapear a relaçao
     private List<Cidade> cidades = new ArrayList<>();
 
     public Estado() {

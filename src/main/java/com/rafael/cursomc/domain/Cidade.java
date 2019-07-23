@@ -1,5 +1,7 @@
 package com.rafael.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,8 +16,9 @@ public class Cidade implements Serializable {
     private Integer id;
     private String nome;
 
+    @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "estado_id")  // nome da FK da tabela cidae no BD
+    @JoinColumn(name = "estado_id")  // FK para estado dentro de cidade
     private Estado estado;
 
     public Cidade() {

@@ -18,8 +18,8 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     /*
-    * @ObjectNotFoundException from com.rafael.cursomc.services.exceptions
-    * */
+     * @ObjectNotFoundException from com.rafael.cursomc.services.exceptions
+     * */
     public Categoria find(Integer id) {
         Optional<Categoria> obj = categoriaRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
