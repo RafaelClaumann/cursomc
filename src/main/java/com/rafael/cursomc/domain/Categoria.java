@@ -13,19 +13,18 @@ public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
-
-    @JsonManagedReference  // deve ser declarada na classe em que você quer que os objetos associados apareçam.
-    @ManyToMany(mappedBy = "categorias")  // categorias é o atributo em Produto onde foi feito o mapeamento da relação.
+    @ManyToMany(mappedBy="categorias")
     private List<Produto> produtos = new ArrayList<>();
 
     public Categoria() {
     }
 
     public Categoria(Integer id, String nome) {
+        super();
         this.id = id;
         this.nome = nome;
     }

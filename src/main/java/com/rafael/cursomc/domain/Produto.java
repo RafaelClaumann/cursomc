@@ -1,6 +1,7 @@
 package com.rafael.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,22 +17,14 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
-    /*
-     * PRODUTO_CATEGORIA(produto_id, categoria_id)
-     *   produto_id REFERENCES Produto(id)
-     *   categoria_id REFERENCES Categoria(id)
-     *
-     * @JsonBackReference = O outro lado da associaçao já buscou os objetos então agora não devo buscar e
-     * omito a lista de categorias para cada produto (Elimina a recursão entre Produto-Categoria).
-     *
-     * */
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
@@ -39,17 +32,19 @@ public class Produto implements Serializable {
     }
 
     public Produto(Integer id, String nome, Double preco) {
+        super();
         this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos() {
-        List<Pedido> pedidos = new ArrayList<>();
+        List<Pedido> lista = new ArrayList<>();
         for (ItemPedido x : itens) {
-            pedidos.add(x.getPedido());
+            lista.add(x.getPedido());
         }
-        return pedidos;
+        return lista;
     }
 
     public Integer getId() {

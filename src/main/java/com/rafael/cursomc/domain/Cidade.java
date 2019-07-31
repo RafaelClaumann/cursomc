@@ -15,18 +15,18 @@ public class Cidade implements Serializable {
     private Integer id;
     private String nome;
 
-    @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "estado_id")  // FK para estado dentro de cidade
+    @JoinColumn(name = "estado_id")
     private Estado estado;
 
     public Cidade() {
     }
 
-    public Cidade(Integer id, Estado estado, String nome) {
+    public Cidade(Integer id, String nome, Estado estado) {
+        super();
         this.id = id;
-        this.estado = estado;
         this.nome = nome;
+        this.estado = estado;
     }
 
     public Integer getId() {

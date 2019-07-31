@@ -1,5 +1,6 @@
 package com.rafael.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rafael.cursomc.domain.enums.TipoCliente;
 
@@ -19,14 +20,14 @@ public class Cliente implements Serializable {
     private String cpf;
     private Integer tipo;
 
-    @JsonManagedReference  // cliente serializa seus enderecos no endpoint /clientes/{id}
-    @OneToMany(mappedBy = "cliente")  // atributo cliente em Endereco é quem mapeia a relação
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
     @ElementCollection
-    @CollectionTable(name = "TELEFONE")  // tabela TELEFONE com cliente_id
+    @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 

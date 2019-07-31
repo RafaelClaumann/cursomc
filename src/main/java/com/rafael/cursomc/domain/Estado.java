@@ -1,6 +1,7 @@
 package com.rafael.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,14 +18,15 @@ public class Estado implements Serializable {
     private Integer id;
     private String nome;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "estado")  // atributo estado em Cidade.java é usado para mapear a relaçao
+    @JsonIgnore
+    @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
 
     public Estado() {
     }
 
     public Estado(Integer id, String nome) {
+        super();
         this.id = id;
         this.nome = nome;
     }

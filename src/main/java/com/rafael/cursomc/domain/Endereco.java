@@ -1,6 +1,7 @@
 package com.rafael.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,20 +20,21 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cep;
 
-    @JsonBackReference  // endereco é serializado pelo cliente no endpoint /clientes/{id}
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "cliente_id")  // gerou uma coluna na tabela Endereco chamada cliente_id
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "cidade_id")  // gerou uma coluna na tabela Endereco chamada cidade_id
+    @JoinColumn(name = "cidade_id")
     private Cidade cidade;
 
     public Endereco() {
     }
 
-    public Endereco(Integer id, String logradouro, String numero, String complemento,
-                    String bairro, String cep, Cliente cliente, Cidade cidade) {
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
+                    Cliente cliente, Cidade cidade) {
+        super();
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -40,7 +42,7 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
         this.cep = cep;
         this.cliente = cliente;
-        this.cidade = cidade;
+        this.setCidade(cidade);
     }
 
     public Integer getId() {
