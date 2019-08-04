@@ -1,7 +1,6 @@
 package com.rafael.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rafael.cursomc.domain.enums.TipoCliente;
 
 import javax.persistence.*;
