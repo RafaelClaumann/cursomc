@@ -1,7 +1,5 @@
 package com.rafael.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,11 +11,11 @@ public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
-    @ManyToMany(mappedBy="categorias")
+    @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
     public Categoria() {
