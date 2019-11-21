@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 // Classe para representar o servico capaz de atender o controlador REST relacionado a operacoes com Categoria.
@@ -46,5 +47,9 @@ public class CategoriaService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos.");
         }
+    }
+
+    public List<Categoria> findAll() {
+        return categoriaRepository.findAll();
     }
 }
