@@ -2,12 +2,19 @@ package com.rafael.cursomc.dto;
 
 import com.rafael.cursomc.domain.Categoria;
 
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
+
+import javax.validation.constraints.NotEmpty;
 
 public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
+    @NotEmpty(message = "Nome não pode estar vazio!")
+    @Length(min = 5, max = 80, message = "Nome deve ter pelo menos 5 caracteres e no máximo 80!")
     private String nome;
 
     public CategoriaDTO() {
